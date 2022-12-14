@@ -1,0 +1,7 @@
+<div *ngIf="authenticated" class="text-white">
+  <div class="d-flex flex-column justify-content-center">
+    <h2 *ngIf="!overview" class="center">Herzlich Willkommen</h2>
+    <h2 *ngIf="overview" class="center"> Übersicht für {{overview}}</h2>
+    <h2 class="base-color center"> {{userProfile?.firstName}} {{userProfile?.lastName}}!</h2>
+  </div>
+</div>

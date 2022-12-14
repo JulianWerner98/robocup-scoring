@@ -1,0 +1,267 @@
+$base-color: rgb(241, 137, 4);
+
+//Angular-Akzente color fix
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: $base-color !important;
+}
+
+.mat-primary .mat-pseudo-checkbox-checked, .mat-primary .mat-pseudo-checkbox-indeterminate {
+  background: $base-color !important;
+}
+
+.mat-badge-content {
+  background: $base-color !important;
+}
+
+.mat-button.mat-primary, .mat-icon-button.mat-primary, .mat-stroked-button.mat-primary {
+  color: $base-color !important;
+}
+
+.mat-button.mat-primary .mat-button-focus-overlay, .mat-icon-button.mat-primary .mat-button-focus-overlay, .mat-stroked-button.mat-primary .mat-button-focus-overlay {
+  background-color: $base-color !important;
+}
+
+.mat-flat-button.mat-primary, .mat-raised-button.mat-primary, .mat-fab.mat-primary, .mat-mini-fab.mat-primary {
+  background-color: $base-color !important;
+}
+
+.mat-checkbox-indeterminate.mat-primary .mat-checkbox-background, .mat-checkbox-checked.mat-primary .mat-checkbox-background {
+  background-color: $base-color !important;
+}
+
+.mat-checkbox-checked:not(.mat-checkbox-disabled).mat-primary .mat-ripple-element, .mat-checkbox:active:not(.mat-checkbox-disabled).mat-primary .mat-ripple-element {
+  background: $base-color !important;
+}
+
+.mat-chip.mat-standard-chip.mat-chip-selected.mat-primary {
+  background-color: $base-color !important;
+}
+
+.mat-calendar-body-selected {
+  background-color: $base-color !important;
+}
+
+.mat-datepicker-toggle-active {
+  color: $base-color !important;
+}
+
+.mat-form-field.mat-focused .mat-form-field-label {
+  color: $base-color !important;
+}
+
+.mat-form-field.mat-focused .mat-form-field-ripple {
+  background-color: $base-color !important;
+}
+
+.mat-form-field-type-mat-native-select.mat-focused:not(.mat-form-field-invalid) .mat-form-field-infix::after {
+  color: $base-color !important;
+}
+
+.mat-form-field-appearance-outline.mat-focused .mat-form-field-outline-thick {
+  color: $base-color !important;
+}
+
+.mat-icon.mat-primary {
+  color: $base-color !important;
+}
+
+.mat-input-element {
+  caret-color: $base-color !important;
+}
+
+.mat-progress-bar-fill::after {
+  background-color: $base-color !important;
+}
+
+.mat-progress-spinner circle, .mat-spinner circle {
+  stroke: $base-color !important;
+}
+
+.mat-radio-button.mat-primary.mat-radio-checked .mat-radio-outer-circle {
+  border-color: $base-color !important;
+}
+
+.mat-radio-button.mat-primary .mat-radio-inner-circle, .mat-radio-button.mat-primary .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple), .mat-radio-button.mat-primary.mat-radio-checked .mat-radio-persistent-ripple, .mat-radio-button.mat-primary:active .mat-radio-persistent-ripple {
+  background-color: $base-color !important;
+}
+
+.mat-form-field.mat-focused.mat-primary .mat-select-arrow {
+  color: $base-color !important;
+}
+
+.mat-slide-toggle.mat-primary.mat-checked .mat-slide-toggle-thumb {
+  background-color: $base-color !important;
+}
+
+.mat-slide-toggle.mat-primary.mat-checked .mat-ripple-element {
+  background-color: $base-color !important;
+}
+
+.mat-slider.mat-primary .mat-slider-track-fill, .mat-slider.mat-primary .mat-slider-thumb, .mat-slider.mat-primary .mat-slider-thumb-label {
+  background-color: $base-color !important;
+}
+
+.mat-step-header .mat-step-icon-selected, .mat-step-header .mat-step-icon-state-done, .mat-step-header .mat-step-icon-state-edit {
+  background-color: $base-color !important;
+}
+
+.mat-tab-group.mat-primary .mat-ink-bar, .mat-tab-nav-bar.mat-primary .mat-ink-bar {
+  background-color: $base-color !important;
+}
+
+.mat-tab-group.mat-background-primary > .mat-tab-header, .mat-tab-group.mat-background-primary > .mat-tab-link-container, .mat-tab-group.mat-background-primary > .mat-tab-header-pagination, .mat-tab-nav-bar.mat-background-primary > .mat-tab-header, .mat-tab-nav-bar.mat-background-primary > .mat-tab-link-container, .mat-tab-nav-bar.mat-background-primary > .mat-tab-header-pagination {
+  background-color: $base-color !important;
+}
+
+.mat-toolbar.mat-primary {
+  background: $base-color !important;
+}
+
+//Angular tables fix
+.mat-table {
+  tr:nth-child(even) {
+    background-color: #3b3b3b;
+  }
+}
+
+.mat-tab-body-content {
+  overflow: none !important;
+}
+
+.mat-tab-body {
+  overflow: none !important;
+}
+
+.mat-tab {
+  overflow: none !important;
+}
+
+.mat-sort-header-content {
+  opacity: .6;
+  font-size: small;
+}
+
+//Angular Tab-Group fix
+.mat-tab-label-content {
+  user-select: none;
+}
+
+//dropdown
+#filterWidth {
+  .mat-form-field-underline {
+    bottom: 0 !important;
+  }
+
+  .mat-form-field-wrapper {
+    padding-bottom: 0 !important;
+  }
+
+  .mat-form-field-appearance-fill .mat-form-field-flex {
+    padding: 0 0.75em 0 0.75em !important;
+  }
+
+  .mat-form-field-appearance-fill .mat-form-field-infix {
+    padding: 0.75em 0 0.5em 0;
+  }
+
+  .mat-select {
+    margin-top: 5px !important;
+  }
+
+  .mat-form-field-label-wrapper {
+    position: initial !important;
+  }
+
+  .mat-form-field-infix {
+    border-top: 0 !important;
+    margin-top: 5px !important;
+    width: auto !important;
+    min-width: 120px !important;
+  }
+
+  .mat-select-arrow {
+    margin-left: 10px !important;
+  }
+}
+
+#volunteers {
+  .mat-select-arrow {
+    color: rgb(0, 0, 0);
+  }
+
+  .mat-select-value {
+    color: rgb(0 0 0 / 87%);
+  }
+
+  .mat-form-field-wrapper {
+    padding-bottom: 0;
+  }
+
+  .mat-form-field-underline {
+    bottom: 0 !important;
+    display: none !important;
+  }
+}
+
+// Paginator
+.mat-option-text {
+  color: white;
+}
+
+.mat-option.mat-selected {
+  background: $base-color !important;
+}
+
+.mat-primary .mat-option.mat-selected:not(.mat-option-disabled) {
+  color: $base-color
+}
+
+
+.mat-paginator-container {
+  justify-content: flex-start !important;
+
+}
+
+//Modal
+
+.modal {
+  --bs-modal-bg: none !important;
+  --bs-modal-header-border-color: none !important;
+}
+
+.modal-body {
+  border-bottom-left-radius: var(--bs-modal-inner-border-radius) !important;
+  border-bottom-right-radius: var(--bs-modal-inner-border-radius) !important;
+}
+
+.modal-content {
+  border: none !important;
+  background-color: #212529cc !important;;
+}
+
+
+@media (max-width: 580px) {
+
+  .mat-paginator-container {
+    justify-content: center !important;
+  }
+
+  .mat-paginator-range-label {
+    width: 100% !important;
+    white-space: nowrap !important;
+    text-align: center;
+  }
+
+  .mat-paginator-range-actions {
+    display: flex;
+    flex-wrap: wrap-reverse;
+    align-items: center;
+    justify-content: center;
+    padding: 10px;
+  }
+
+}
+
+.form-control.is-invalid, .was-validated .form-control:invalid {
+  border: 5px solid #ee0018;
+}
