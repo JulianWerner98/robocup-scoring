@@ -8,6 +8,7 @@ export const environment = {
   kRealm: 'RoboCup',
   kClientId: 'app-frontend',
   baseUrlV1: 'https://anmeldung.robocupjunior.de/api/v1',
+  baseUrlV1Anmeldung: 'https://scoring.robocupjunior.de/api/v1',
   local: false
 };
 

@@ -262,6 +262,7 @@ $base-color: rgb(241, 137, 4);
 
 }
 
-.form-control.is-invalid, .was-validated .form-control:invalid {
+.form-control.is-invalid, .was-validated .form-control:invalid,
+.form-select.is-invalid, .was-validated .form-select:invalid {
   border: 5px solid #ee0018;
 }

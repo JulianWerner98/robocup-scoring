@@ -3,11 +3,11 @@ import {KeycloakService} from 'keycloak-angular';
 import {registerLocaleData} from "@angular/common";
 import localeFr from '@angular/common/locales/fr';
 import {KeycloakProfile} from "keycloak-js";
-import {HttpErrorHandling} from "../assets/httpErrorHandling";
 import {ToastrService} from "ngx-toastr";
 import {environment} from './../environments/environment';
 import {CookieService} from "ngx-cookie-service";
 import {CookieHandler} from "./shared/cookieHandler";
+import {GlobalErrorHandler} from "./shared/GlobalErrorHandler";
 
 @Component({
   selector: 'app-root',
@@ -27,7 +27,7 @@ export class AppComponent implements OnInit {
     private toastr: ToastrService,
     private cookieService: CookieService,
   ) {
-    HttpErrorHandling.toastr = toastr;
+    GlobalErrorHandler.toastr = toastr;
   }
 
   async ngOnInit() {

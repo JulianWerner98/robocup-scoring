@@ -46,7 +46,7 @@ export class AdminController implements OnModuleInit {
 
 
     @Patch('user')
-    @Roles({roles: ['realm:admin', 'realm:admin', 'realm:quali', 'realm:volunteer']})
+    @Roles({roles: ['realm:default-roles-robocup']})
     async updateUserProfile(
         @AuthenticatedUser() user: any,
         @Body() updateUserProfile: UpdateUserProfile) {
