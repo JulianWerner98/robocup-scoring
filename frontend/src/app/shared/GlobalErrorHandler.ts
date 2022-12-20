@@ -19,10 +19,12 @@ export class GlobalErrorHandler implements ErrorHandler {
     this.zone.run(() => {
 
     });
-    GlobalErrorHandler.toastr.error(
-      error.error.message ? error.error.message : error.message,
-      "Error",
-    );
+    if (error.message || error.error.message) {
+      GlobalErrorHandler.toastr.error(
+        error.message ? error.message : error.error.message,
+        "Error",
+      );
+    }
     console.error('Error from global error handler', error);
     if (error.status === 401) {
       GlobalErrorHandler.toastr.error("Sie sind berechtigt diese Aktion auszuführen. Das erneute Laden der Seite kann helfen.", "Error");

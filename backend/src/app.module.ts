@@ -7,6 +7,9 @@ import {Connection} from "mongoose";
 import * as toJson from '@meanie/mongoose-to-json'
 import {APP_GUARD} from "@nestjs/core";
 import {AdminModule} from "./admin";
+import {SettingsModule} from './settings/settings.module';
+import {ScoreModule} from './score/score.module';
+import {DisciplineModule} from './discipline/discipline.module';
 
 @Module({
     imports: [
@@ -38,6 +41,9 @@ import {AdminModule} from "./admin";
             inject: [ConfigService]
         }),
         AdminModule,
+        SettingsModule,
+        ScoreModule,
+        DisciplineModule,
     ],
     providers: [
         {

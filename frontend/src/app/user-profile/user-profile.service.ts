@@ -6,7 +6,7 @@ import {UserRepresentation} from "./dto/UserRepresentation.dto";
 @Injectable({
   providedIn: 'root'
 })
-export class AdminService {
+export class UserProfileService {
 
   constructor(private http: HttpClient) {
   }

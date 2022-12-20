@@ -5,7 +5,7 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {ToastrService} from "ngx-toastr";
 import {Router} from "@angular/router";
 import {NoWithSpaceValidator} from "../shared/noWithSpaceValidator";
-import {AdminService} from "../admin/admin.service";
+import {UserProfileService} from "./user-profile.service";
 import {NgbModal} from "@ng-bootstrap/ng-bootstrap";
 
 @Component({
@@ -32,7 +32,7 @@ export class UserProfileComponent implements OnInit {
     private toastr: ToastrService,
     private keycloakService: KeycloakService,
     private router: Router,
-    private adminService: AdminService,
+    private userProfileService: UserProfileService,
     private modalService: NgbModal,
   ) {
   }
@@ -67,14 +67,14 @@ export class UserProfileComponent implements OnInit {
       email: this.userForm.get('mail')?.value,
       username: this.userForm.get('nickname')?.value,
     }
-    this.adminService.updateUserProfile(userProfileDto).subscribe(() => window.location.reload())
+    this.userProfileService.updateUserProfile(userProfileDto).subscribe(() => window.location.reload())
   }
 
   deleteAccount() {
     this.modalService.open(this.deleteConfirmModal, {centered: true})
       .result
       .then((result) => {
-        this.adminService.deleteAll().subscribe(() => {
+        this.userProfileService.deleteAll().subscribe(() => {
           this.keycloakService.logout()
         });
       }, (reason) => {

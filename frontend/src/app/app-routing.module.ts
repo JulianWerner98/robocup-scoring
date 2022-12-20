@@ -20,6 +20,22 @@ const routes: Routes = [
     }
   },
   {
+    path: 'punkte',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./score/score.module').then((m) => m.ScoreModule),
+    data: {
+      roles: ['default-roles-robocup']
+    }
+  },
+  {
+    path: 'einstellungen',
+    canActivate: [AuthGuard],
+    loadChildren: () => import('./settings/settings.module').then((m) => m.SettingsModule),
+    data: {
+      roles: ['default-roles-robocup']
+    }
+  },
+  {
     path: '**',
     redirectTo: ''
   }
