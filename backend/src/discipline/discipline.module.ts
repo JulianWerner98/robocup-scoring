@@ -5,7 +5,9 @@ import {Discipline, DisciplineSchema} from "./discipline.schema";
 import {MongooseModule} from "@nestjs/mongoose";
 
 @Module({
-  imports: [MongooseModule.forFeature([{name: Discipline.name, schema: DisciplineSchema}]),],
+  imports: [
+      MongooseModule.forFeature([{name: Discipline.name, schema: DisciplineSchema}])
+  ],
   controllers: [DisciplineController],
   providers: [DisciplineService]
 })

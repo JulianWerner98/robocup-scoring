@@ -10,6 +10,7 @@ import {AdminModule} from "./admin";
 import {SettingsModule} from './settings/settings.module';
 import {ScoreModule} from './score/score.module';
 import {DisciplineModule} from './discipline/discipline.module';
+import { RunModule } from './run/run.module';
 
 @Module({
     imports: [
@@ -44,6 +45,7 @@ import {DisciplineModule} from './discipline/discipline.module';
         SettingsModule,
         ScoreModule,
         DisciplineModule,
+        RunModule,
     ],
     providers: [
         {

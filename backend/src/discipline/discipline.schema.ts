@@ -1,6 +1,6 @@
 import {Prop, Schema, SchemaFactory} from "@nestjs/mongoose";
 
-@Schema()
+@Schema( { timestamps: true })
 export class Discipline {
 
     @Prop()
@@ -11,6 +11,9 @@ export class Discipline {
 
     @Prop()
     ratedRuns: number;
+
+    @Prop()
+    createdBy: string;
 }
 
 export const DisciplineSchema = SchemaFactory.createForClass(Discipline);

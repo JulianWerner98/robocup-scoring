@@ -1,1 +1,25 @@
-<p>overview works!</p>
+<h1>Punkteübersicht</h1>
+<div style="overflow-x:auto" class="mb-5">
+  <button class="btn topButton-base base-bg me-2 p-2" (click)="importTeam();" *ngIf="import">
+    <div class="d-flex flex-row">
+      <i class="bi bi-plus-square-fill base-bg-btn-color"></i>
+      <span class="d-sm-block d-none ps-2">Teams von Anmeldung importieren</span>
+    </div>
+  </button>
+  <div style="overflow-x:auto" class="mb-5">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+      <ng-container matColumnDef="teamname">
+        <th style="min-width: 150px;" mat-header-cell *matHeaderCellDef>Institution</th>
+        <td class="pe-3 fw-bold base-color" mat-cell *matCellDef="let element"></td>
+      </ng-container>
+
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator [pageSizeOptions]="[10, 15, 20]"
+                   showFirstLastButtons
+                   aria-label="Select page of periodic elements">
+    </mat-paginator>
+  </div>
+</div>

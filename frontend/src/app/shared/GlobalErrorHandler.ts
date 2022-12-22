@@ -12,6 +12,7 @@ export class GlobalErrorHandler implements ErrorHandler {
   }
 
   handleError(error: any) {
+    console.error('Error from global error handler', error.message);
     // Check if it's an error from an HTTP response
     if (!(error instanceof HttpErrorResponse)) {
       error = error.rejection; // get the error object
@@ -19,15 +20,21 @@ export class GlobalErrorHandler implements ErrorHandler {
     this.zone.run(() => {
 
     });
-    if (error.message || error.error.message) {
+    if (error) {
+      let message = "An error occurred";
+      if(error.error && error.error.message) {
+        message = error.error.message;
+      } else {
+        message = error.message;
+      }
       GlobalErrorHandler.toastr.error(
-        error.message ? error.message : error.error.message,
+        message,
         "Error",
       );
-    }
-    console.error('Error from global error handler', error);
-    if (error.status === 401) {
-      GlobalErrorHandler.toastr.error("Sie sind berechtigt diese Aktion auszuführen. Das erneute Laden der Seite kann helfen.", "Error");
+
+      if (error.status && error.status === 401) {
+        GlobalErrorHandler.toastr.error("Sie sind berechtigt diese Aktion auszuführen. Das erneute Laden der Seite kann helfen.", "Error");
+      }
     }
     return error;
   }

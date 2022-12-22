@@ -1,1 +1,17 @@
-<h1>Settings works!</h1>
+<div class="row flex-column align-items-center justify-content-center">
+  <div class="col col-xl-6 card card-shadow text-white p-3 mb-5">
+    <h1>Einstellungen</h1>
+    <ul class="list-group">
+      <li *ngFor="let discipline of disciplines">
+        <h5>{{discipline.name}}</h5>
+        <div class="input-group mb-3">
+          <span class="input-group-text">Wertungsläufe</span>
+          <input type="number" class="form-control" min="1" #rated value="{{discipline.ratedRuns}}">
+          <span class="input-group-text">Gesamtläufe</span>
+          <input type="number" class="form-control" min="1" #total value="{{discipline.totalRuns}}">
+          <button class="form-control base-bg" (click)="updateDiscipline(discipline, rated, total)"> Update</button>
+        </div>
+      </li>
+    </ul>
+  </div>
+</div>

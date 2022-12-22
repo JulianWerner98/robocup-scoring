@@ -9,11 +9,14 @@ interface Run {
     readonly secondReview: string;
 }
 
-@Schema()
+@Schema({timestamps: true})
 export class Score {
 
     @Prop()
     teamname: string;
+
+    @Prop()
+    originalId: string;
 
     @Prop()
     location: string;
@@ -22,8 +25,8 @@ export class Score {
     @Prop({type: SchemaMongoose.Types.ObjectId})
     discipline: {type: SchemaMongoose.Types.ObjectId, Ref: 'Discipline'};
 
-    @Prop()
-    scores: Run[];
+    @Prop({type: SchemaMongoose.Types.ObjectId})
+    runs:[ {type: SchemaMongoose.Types.ObjectId, Ref: 'Run'}];
 }
 
 export const ScoreSchema = SchemaFactory.createForClass(Score);

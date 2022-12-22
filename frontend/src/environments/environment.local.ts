@@ -8,7 +8,7 @@ export const environment = {
   kRealm: 'RoboCup',
   kClientId: 'app-frontend-scoring',
   baseUrlV1: 'http://localhost:3001/api/v1',
-  baseUrlV1Anmeldung: 'http://localhost:3001/api/v1',
+  baseUrlV1Anmeldung: 'http://localhost:3000/api/v1',
   local: true
 };
 
