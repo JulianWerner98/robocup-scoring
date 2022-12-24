@@ -6,6 +6,7 @@ import { OverviewComponent } from './overview/overview.component';
 import {MatPaginatorModule} from "@angular/material/paginator";
 import {MatTableModule} from "@angular/material/table";
 import {GetArrayWithNumbersPipe, GetRunFromRunsPipe, SecondsToTimePipe} from "../shared/pipes";
+import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
@@ -20,7 +21,8 @@ import {GetArrayWithNumbersPipe, GetRunFromRunsPipe, SecondsToTimePipe} from "..
     CommonModule,
     ScoreRoutingModule,
     MatPaginatorModule,
-    MatTableModule
+    MatTableModule,
+    FormsModule
   ],
   providers: [
     GetArrayWithNumbersPipe,

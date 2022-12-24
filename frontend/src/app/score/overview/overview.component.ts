@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewInit, Component, OnInit, ViewChild} from '@angular/core';
 import {MatTableDataSource} from "@angular/material/table";
 import {ScoreService} from "../score.service";
 import {ToastrService} from "ngx-toastr";
@@ -7,17 +7,20 @@ import {FullScore, Run} from "../dto/score.dto";
 import {firstValueFrom} from "rxjs";
 import {RunService} from "../run.service";
 import {GetRunFromRunsPipe} from "../../shared/pipes";
+import {MatPaginator} from "@angular/material/paginator";
 
 @Component({
   selector: 'app-overview',
   templateUrl: './overview.component.html',
   styleUrls: ['./overview.component.scss']
 })
-export class OverviewComponent implements OnInit {
+export class OverviewComponent implements OnInit, AfterViewInit {
+  @ViewChild(MatPaginator) paginator!: MatPaginator;
   dataSource = new MatTableDataSource<any>();
   displayedColumns: string[] = [];
   disciplines: Discipline[] = [];
   currentDiscipline: Discipline = {totalRuns: 0, name: '', ratedRuns: 0, id: '', createdBy: ''};
+  selectedDiscipline: string = '';
   scores: FullScore[] = [];
 
   constructor(
@@ -31,24 +34,29 @@ export class OverviewComponent implements OnInit {
   async ngOnInit() {
     this.disciplines = await firstValueFrom(this.scoreService.getDisciplines());
     this.scores = await firstValueFrom(this.scoreService.getFullScores());
-    this.changeDiscipline(this.disciplines[2]);
+    this.selectedDiscipline = this.disciplines[0].id;
+    this.changeDiscipline();
+  }
+  ngAfterViewInit(): void {
+    this.dataSource.paginator = this.paginator;
   }
 
-  changeDiscipline(discipline: Discipline) {
-    this.currentDiscipline = discipline;
-
+  changeDiscipline() {
+    if(this.selectedDiscipline) {
+      this.currentDiscipline = this.disciplines.find((discipline) => discipline.id === this.selectedDiscipline)!;
+    }
     this.displayedColumns = ['place','teamname']
-    for (let i = 0; i < discipline.totalRuns; i++) {
+    for (let i = 0; i < this.currentDiscipline.totalRuns; i++) {
       this.displayedColumns.push(`run${i + 1}`);
     }
     this.displayedColumns.push('sum');
 
-    let teams: any = this.scores.filter(score => score.discipline === discipline.id);
+    let teams: any = this.scores.filter(score => score.discipline === this.currentDiscipline.id);
     teams = teams.map((team: any, index: number) => {
       return {
         teamname: team.teamname,
         id: team._id,
-        runs: this.calculateSum(discipline, team.runs),
+        runs: this.calculateSum(this.currentDiscipline, team.runs),
       }
     });
     teams.sort((a: any, b: any) => {
@@ -108,4 +116,5 @@ export class OverviewComponent implements OnInit {
     newRuns.push(sumRun);
     return newRuns;
   }
+
 }
