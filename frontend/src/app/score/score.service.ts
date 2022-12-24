@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {Score, Team} from "./dto/score.dto";
+import {FullScore, Score, Team} from "./dto/score.dto";
 import {environment} from "../../environments/environment";
 import {Observable} from "rxjs";
 import {Discipline} from "./dto/discipline.dto";
@@ -31,5 +31,9 @@ export class ScoreService {
 
   createDisciplines(availableLeagues: string[]): Observable<Discipline[]> {
     return this.httpClient.post<Discipline[]>(`${environment.baseUrlV1}/discipline`, {disciplines: availableLeagues});
+  }
+
+  getFullScores(): Observable<FullScore[]> {
+    return this.httpClient.get<FullScore[]>(`${environment.baseUrlV1}/score/full`);
   }
 }

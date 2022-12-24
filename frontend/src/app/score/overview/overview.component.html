@@ -1,17 +1,40 @@
 <h1>Punkteübersicht</h1>
 <div style="overflow-x:auto" class="mb-5">
-  <button class="btn topButton-base base-bg me-2 p-2" (click)="importTeam();" *ngIf="import">
-    <div class="d-flex flex-row">
-      <i class="bi bi-plus-square-fill base-bg-btn-color"></i>
-      <span class="d-sm-block d-none ps-2">Teams von Anmeldung importieren</span>
-    </div>
-  </button>
   <div style="overflow-x:auto" class="mb-5">
     <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
 
+      <ng-container matColumnDef="place">
+        <th style="min-width: 150px;" mat-header-cell *matHeaderCellDef>Platz</th>
+        <td class="pe-3 fw-bold" mat-cell *matCellDef="let element">{{element.place}}</td>
+      </ng-container>
+
       <ng-container matColumnDef="teamname">
-        <th style="min-width: 150px;" mat-header-cell *matHeaderCellDef>Institution</th>
-        <td class="pe-3 fw-bold base-color" mat-cell *matCellDef="let element"></td>
+        <th style="min-width: 150px;" mat-header-cell *matHeaderCellDef>Teamname</th>
+        <td class="pe-3 fw-bold base-color" mat-cell *matCellDef="let element">{{element.teamname}}</td>
+      </ng-container>
+
+      <ng-container *ngFor="let runNumber of currentDiscipline.totalRuns | GetArrayWithNumbers" matColumnDef="run{{runNumber}}">
+        <th style="min-width: 150px;" mat-header-cell *matHeaderCellDef>Runde {{runNumber}}</th>
+        <td class="pe-3" mat-cell *matCellDef="let element" (dblclick)="goToRun(element, runNumber)"
+            [class.notRated]="!(runNumber | GetRunFromRuns: element.runs)?.scored"
+        >
+          {{(runNumber | GetRunFromRuns: element.runs)?.points || '-'}}
+         <span *ngIf="(runNumber | GetRunFromRuns: element.runs)">
+           ({{(runNumber | GetRunFromRuns: element.runs)?.time | SecondsToTime}})
+         </span>
+        </td>
+      </ng-container>
+
+      <ng-container matColumnDef="sum">
+        <th style="min-width: 150px;" mat-header-cell *matHeaderCellDef>Summe</th>
+        <td class="pe-3 fw-bold" mat-cell *matCellDef="let element"
+            [class.notRated]="!(0 | GetRunFromRuns: element.runs)?.scored"
+        >
+          {{(0 | GetRunFromRuns: element.runs)?.points || '-'}}
+          <span *ngIf="(0 | GetRunFromRuns: element.runs).points">
+           ({{(0 | GetRunFromRuns: element.runs)?.time | SecondsToTime}})
+         </span>
+        </td>
       </ng-container>
 
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

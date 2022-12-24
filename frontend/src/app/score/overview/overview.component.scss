@@ -1,3 +1,21 @@
 td:last-child {
   border-left: none !important;
 }
+
+table {
+  width: 100%;
+
+  thead {
+    user-select: none;
+    background-color: #fff !important;
+  }
+
+  td:last-child {
+    font-weight: bolder;
+    color: rgb(241, 137, 4) !important;
+  }
+}
+
+.notRated {
+  color: grey !important;
+}

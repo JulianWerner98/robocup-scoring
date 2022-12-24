@@ -11,13 +11,13 @@ export class DisciplineService {
 
 
     get(user: any): Promise<Discipline[]> {
-        return this.disciplineModel.find({createdBy: user.sub}).exec();
+        return this.disciplineModel.find({location: user.location}).exec();
     }
 
     create(user: any, disciplines: string[]) {
         return this.disciplineModel.insertMany(disciplines.map(discipline => {
             return {
-                createdBy: user.sub,
+                location: user.location,
                 name: discipline,
                 totalRuns: 4,
                 ratedRuns:3,

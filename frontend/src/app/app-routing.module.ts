@@ -24,7 +24,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('./score/score.module').then((m) => m.ScoreModule),
     data: {
-      roles: ['default-roles-robocup']
+      roles: ['quali']
     }
   },
   {
@@ -32,7 +32,7 @@ const routes: Routes = [
     canActivate: [AuthGuard],
     loadChildren: () => import('./settings/settings.module').then((m) => m.SettingsModule),
     data: {
-      roles: ['default-roles-robocup']
+      roles: ['quali']
     }
   },
   {

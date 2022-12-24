@@ -1,7 +1,7 @@
 import {Body, Controller, Get, Param, Patch, Post} from '@nestjs/common';
 import {DisciplineService} from "./discipline.service";
 import {NotFound} from "../util/not-found.decorator";
-import {AuthenticatedUser} from "nest-keycloak-connect";
+import {AuthenticatedUser, Roles} from "nest-keycloak-connect";
 import {Discipline} from "./discipline.schema";
 import {CreateDiscipline} from "./dto/create-discipline.dto";
 import {FindDisciplineDto} from "./dto/find-discipline.dto";
@@ -17,11 +17,13 @@ export class DisciplineController {
 
     @Get()
     @NotFound()
+    @Roles({roles: ['realm:quali']})
     async get(@AuthenticatedUser() user): Promise<any> {
         return this.disciplineService.get(user);
     }
 
     @Post()
+    @Roles({roles: ['realm:quali']})
     async create(
         @AuthenticatedUser() user,
         @Body() disciplines: CreateDiscipline): Promise<Discipline[]> {
@@ -31,6 +33,7 @@ export class DisciplineController {
 
     @Patch(':id')
     @NotFound()
+    @Roles({roles: ['realm:quali']})
     async update(
         @AuthenticatedUser() user,
         @Body() discipline: UpdateDisciplineDto,

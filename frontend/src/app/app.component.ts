@@ -47,6 +47,8 @@ export class AppComponent implements OnInit {
             await this.initIfNotExist();
           }
         });
+      } else {
+        this.toastr.error('Kein Quali Bro');
       }
     }
   }

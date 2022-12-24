@@ -13,7 +13,7 @@ export class Discipline {
     ratedRuns: number;
 
     @Prop()
-    createdBy: string;
+    location: string;
 }
 
 export const DisciplineSchema = SchemaFactory.createForClass(Discipline);

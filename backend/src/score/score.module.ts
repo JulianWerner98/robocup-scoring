@@ -7,6 +7,7 @@ import {Score, ScoreSchema} from "./score.schema";
 @Module({
   imports: [MongooseModule.forFeature([{name: Score.name, schema: ScoreSchema}]),],
   controllers: [ScoreController],
-  providers: [ScoreService]
+  providers: [ScoreService],
+  exports: [ScoreService]
 })
 export class ScoreModule {}
