@@ -38,10 +38,10 @@ export class GetRescueKitBonusPipe implements PipeTransform {
   }
 }
 
-@Pipe({name: 'GetVictimsBonus'})
-export class GetVictimsBonusPipe implements PipeTransform {
-  transform(victims: number, level: number): number {
-    return Math.max((level === 1 ? 1.2 : 1.4) * victims, 1);
+@Pipe({name: 'GetVictimsMultiplier'})
+export class GetVictimsMultiplierPipe implements PipeTransform {
+  transform(level: number): number {
+    return (level === 1 ? 1.2 : 1.4);
   }
 }
 

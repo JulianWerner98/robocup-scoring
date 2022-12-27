@@ -8,7 +8,7 @@ import { OverviewRowComponent } from './overview-row/overview-row.component';
 import {ScoreModule} from "../score.module";
 import {
   GetExitBonusPipe,
-  GetVictimsBonusPipe,
+  GetVictimsMultiplierPipe,
   GetRescueKitBonusPipe,
   GetSectionPointsPipe,
   GetDeductionPipe
@@ -23,7 +23,7 @@ import {
     GetSectionPointsPipe,
     GetExitBonusPipe,
     GetRescueKitBonusPipe,
-    GetVictimsBonusPipe,
+    GetVictimsMultiplierPipe,
     GetDeductionPipe,
   ],
   imports: [

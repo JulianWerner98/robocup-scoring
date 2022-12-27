@@ -30,20 +30,20 @@ export class LineRun extends Run {
   constructor() {
     super();
     this.value = {
-      lop: 10,
+      lop: 5,
       lopEva: 3,
       sections: [
         {number: 1, value: 1, count: 4},
         {number: 2, value: 2, count: 9},
         {number: 3, value: 4, count: 10}],
       intersections: 5,
-      seesaws: 2,
+      seesaws: 1,
       obstacles: 1,
-      ramps: 3,
+      ramps: 2,
       gaps: 4,
-      bumper: 7,
+      bumper: 5,
       exit: true,
-      rescueKitLevel: 1,
+      rescueKitLevel: 2,
       rescueKit: true,
       evacuationLevel: 2,
       livingVictims: 2,
@@ -83,6 +83,7 @@ export class LineRun extends Run {
     let multiplier = 1;
     let evaMultiplier = 1;
     let rescueMultiplier = 1;
+    let deduction = (this.value.evacuationLevel === 1 ? 0.025 : 0.05) * (this.value.lopEva);
 
     switch (this.value.evacuationLevel) {
       case 1:
@@ -93,12 +94,13 @@ export class LineRun extends Run {
         evaMultiplier = 1.4;
         rescueMultiplier = this.value.rescueKitLevel === 1 ? 1.2 : 1.6;
     }
-    multiplier *= rescueMultiplier * (this.value.rescueKit ? 1 : 0);
-    multiplier *= evaMultiplier * this.value.livingVictims;
-    if (this.value.livingVictims >= 2) {
+    rescueMultiplier = Math.max(rescueMultiplier - deduction, 1);
+    evaMultiplier = Math.max(evaMultiplier - deduction, 1);
+    multiplier *= Math.max(rescueMultiplier * (this.value.rescueKit ? 1 : 0), 1);
+    multiplier *= Math.pow(evaMultiplier, this.value.livingVictims);
+    if (this.value.livingVictims === 2) {
       multiplier *= evaMultiplier * this.value.deadVictims;
     }
-    multiplier -= (this.value.evacuationLevel === 1 ? 0.025 : 0.05) * (this.value.lopEva);
     return multiplier;
   }
 }

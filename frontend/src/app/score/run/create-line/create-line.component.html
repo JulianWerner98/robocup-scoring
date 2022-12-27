@@ -29,7 +29,7 @@
                       [value]="run.value.ramps * 10 + ' Punkte'"></app-overview-row>
     <app-overview-row [title]="'Bumper'" [count]="run.value.bumper + ' x 5 Punkte'"
                       [value]="run.value.bumper * 5 + ' Punkte'"></app-overview-row>
-    <app-overview-row [title]="'Exit?'" [count]="'60 - ('+ (run.value.lop + run.value.lopEva) +' x 5) Punkte'"
+    <app-overview-row [title]="'Exit?'" [count]="run.value.exit?('60 - ('+ (run.value.lop + run.value.lopEva) +' x 5) Punkte'):'Nein'"
                       [value]="((run.value.lop + run.value.lopEva) | GetExitBonus: run.value.exit) + ' Punkte'"></app-overview-row>
     <div class="m-4"></div>
     <app-overview-row [title]="'Zwischensumme'" [value]="subtotal + ' Punkte'" class="fw-bold"></app-overview-row>
@@ -39,12 +39,12 @@
     <app-overview-row [title]="'Rescue Kit abgeladen'" [count]="run.value.rescueKit? 'Ja': 'Nein'"
                       [value]="'x '+ ((run.value.rescueKit | GetRescueKitBonus: run.value.rescueKitLevel: run.value.evacuationLevel) | number: '1.2-2')"></app-overview-row>
     <app-overview-row [title]="'Lebende Opfer'" [count]="run.value.livingVictims.toString()"
-                      [value]="'x '+ ((run.value.livingVictims | GetVictimsBonus: run.value.evacuationLevel) | number: '1.2-2')"></app-overview-row>
+                      [value]="'x '+ ((run.value.livingVictims | GetVictimsMultiplier) | number: '1.2-2')"></app-overview-row>
     <app-overview-row [title]="'Tote Opfer'" [count]="run.value.deadVictims.toString()"
-                      [value]="'x '+ ((run.value.livingVictims === 2? (run.value.deadVictims | GetVictimsBonus: run.value.evacuationLevel):1) | number: '1.2-2')"></app-overview-row>
-    <app-overview-row [title]="'Abzug'" [count]="run.value.lopEva + ' x &mdash;' + (run.value.evacuationLevel === 1? 0.025: 0.05)"
-                      [value]="'\t&mdash;x '+ (run.value.lopEva | GetDeduction: run.value.evacuationLevel | number: '1.2-2')"></app-overview-row>
-    <div class="m-2"></div>
+                      [value]="'x '+ ((run.value.livingVictims === 2? (run.value.evacuationLevel | GetVictimsMultiplier):1) | number: '1.2-2')"></app-overview-row>
+    <app-overview-row [title]="'Abzug pro Victim / Kit'" [count]="run.value.lopEva + ' x &mdash;' + (run.value.evacuationLevel === 1? 0.025: 0.05)"
+                      [value]="'\t&mdash;x '+ (run.value.lopEva | GetDeduction: run.value.evacuationLevel | number: '1.2-3')"></app-overview-row>
+    <div class="m-3"></div>
     <app-overview-row [title]="'Multiplikator'" [value]="'x ' + (multiplier | number: '1.2-2')"></app-overview-row>
     <div class="m-4"></div>
     <app-overview-row [title]="'Summe'" [value]="run.points + ' Punkte'" class="fw-bold"></app-overview-row>
