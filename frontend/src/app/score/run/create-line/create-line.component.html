@@ -1,0 +1,54 @@
+<div class="mb-3 card card-shadow">
+
+</div>
+<div class="mb-3 p-3 card card-shadow">
+  <h4>Zusammenfassung</h4>
+  <div class="container">
+    <app-overview-row [title]="'Lauf'" [value]="run.number.toString()"></app-overview-row>
+    <app-overview-row [title]="'Zeit'" [value]="(run.time | SecondsToTime) + ' min'"></app-overview-row>
+    <app-overview-row [title]="'LoP'" [value]="run.value.lop.toString()"></app-overview-row>
+    <app-overview-row [title]="'LoP in der Rescue Zone'" [value]="run.value.lopEva.toString()"></app-overview-row>
+    <div class="m-3"></div>
+    <app-overview-row [title]="'Startkachel'"   [value]="'5 Punkte'"></app-overview-row>
+    <app-overview-row *ngFor="let section of run.value.sections"
+                      [title]="'Abschnitt ' + section.number + ' ('+section.value+'.Versuch)'"
+                      [count]="section.count + ' x '+ (section.value | GetSectionPoints) +' Punkte'"
+                      [value]="(section.value | GetSectionPoints) * section.count + ' Punkte'">
+    </app-overview-row>
+    <div class="m-3"></div>
+    <app-overview-row [title]="'Kreuzungen / Sackgassen'" [count]="run.value.intersections + ' x 10 Punkte'"
+                      [value]="run.value.intersections * 10 + ' Punkte'">
+    </app-overview-row>
+    <app-overview-row [title]="'Wippen'" [count]="run.value.seesaws + ' x 15 Punkte'"
+                      [value]="run.value.seesaws * 15 + ' Punkte'"></app-overview-row>
+    <app-overview-row [title]="'Hindernisse'" [count]="run.value.obstacles + ' x 15 Punkte'"
+                      [value]="run.value.obstacles * 15 + ' Punkte'"></app-overview-row>
+    <app-overview-row [title]="'Lücken'" [count]="run.value.gaps + ' x 10 Punkte'"
+                      [value]="run.value.gaps * 10 + ' Punkte'"></app-overview-row>
+    <app-overview-row [title]="'Rampen'" [count]="run.value.ramps + ' x 10 Punkte'"
+                      [value]="run.value.ramps * 10 + ' Punkte'"></app-overview-row>
+    <app-overview-row [title]="'Bumper'" [count]="run.value.bumper + ' x 5 Punkte'"
+                      [value]="run.value.bumper * 5 + ' Punkte'"></app-overview-row>
+    <app-overview-row [title]="'Exit?'" [count]="'60 - ('+ (run.value.lop + run.value.lopEva) +' x 5) Punkte'"
+                      [value]="((run.value.lop + run.value.lopEva) | GetExitBonus: run.value.exit) + ' Punkte'"></app-overview-row>
+    <div class="m-4"></div>
+    <app-overview-row [title]="'Zwischensumme'" [value]="subtotal + ' Punkte'" class="fw-bold"></app-overview-row>
+    <div class="m-4"></div>
+    <app-overview-row [title]="'Rescue Kit Level'" [count]="run.value.rescueKitLevel.toString()"></app-overview-row>
+    <app-overview-row [title]="'Evakuierung Level'" [count]="run.value.evacuationLevel.toString()"></app-overview-row>
+    <app-overview-row [title]="'Rescue Kit abgeladen'" [count]="run.value.rescueKit? 'Ja': 'Nein'"
+                      [value]="'x '+ ((run.value.rescueKit | GetRescueKitBonus: run.value.rescueKitLevel: run.value.evacuationLevel) | number: '1.2-2')"></app-overview-row>
+    <app-overview-row [title]="'Lebende Opfer'" [count]="run.value.livingVictims.toString()"
+                      [value]="'x '+ ((run.value.livingVictims | GetVictimsBonus: run.value.evacuationLevel) | number: '1.2-2')"></app-overview-row>
+    <app-overview-row [title]="'Tote Opfer'" [count]="run.value.deadVictims.toString()"
+                      [value]="'x '+ ((run.value.livingVictims === 2? (run.value.deadVictims | GetVictimsBonus: run.value.evacuationLevel):1) | number: '1.2-2')"></app-overview-row>
+    <app-overview-row [title]="'Abzug'" [count]="run.value.lopEva + ' x &mdash;' + (run.value.evacuationLevel === 1? 0.025: 0.05)"
+                      [value]="'\t&mdash;x '+ (run.value.lopEva | GetDeduction: run.value.evacuationLevel | number: '1.2-2')"></app-overview-row>
+    <div class="m-2"></div>
+    <app-overview-row [title]="'Multiplikator'" [value]="'x ' + (multiplier | number: '1.2-2')"></app-overview-row>
+    <div class="m-4"></div>
+    <app-overview-row [title]="'Summe'" [value]="run.points + ' Punkte'" class="fw-bold"></app-overview-row>
+
+
+  </div>
+</div>

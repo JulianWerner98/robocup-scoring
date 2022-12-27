@@ -5,9 +5,10 @@ import {ToastrService} from "ngx-toastr";
 import {Discipline} from "../dto/discipline.dto";
 import {FullScore, Run} from "../dto/score.dto";
 import {firstValueFrom} from "rxjs";
-import {RunService} from "../run.service";
+import {RunService} from "../run/run.service";
 import {GetRunFromRunsPipe} from "../../shared/pipes";
 import {MatPaginator} from "@angular/material/paginator";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-overview',
@@ -27,14 +28,15 @@ export class OverviewComponent implements OnInit, AfterViewInit {
     private scoreService: ScoreService,
     private runService: RunService,
     private getRunFromRunsPipe: GetRunFromRunsPipe,
-    private toastr: ToastrService
+    private toastr: ToastrService,
+    private router: Router
   ) {
   }
 
   async ngOnInit() {
     this.disciplines = await firstValueFrom(this.scoreService.getDisciplines());
     this.scores = await firstValueFrom(this.scoreService.getFullScores());
-    this.selectedDiscipline = this.disciplines[0].id;
+    this.selectedDiscipline = this.disciplines[2].id;
     this.changeDiscipline();
   }
   ngAfterViewInit(): void {
@@ -79,14 +81,9 @@ export class OverviewComponent implements OnInit, AfterViewInit {
   goToRun(score: FullScore, runNumber: number) {
     let run = this.getRunFromRunsPipe.transform(runNumber, score.runs);
     if(!run) {
-      this.runService.createRun(score.id!, runNumber).subscribe((run: Run) => {
-        this.toastr.success(`Run ${runNumber} created`);
-        score.runs.push(run);
-        const index = this.dataSource.data.findIndex((searchedScore) => searchedScore.id === score.id);
-        if (index > -1) {
-          this.dataSource.data.splice(index, 1, score);
-        }
-      });
+      this.router.navigate([`/punkte/erstellen/${score.id}/${this.currentDiscipline.name.toLowerCase()}/${runNumber}`]);
+    } else {
+      this.router.navigate([`/punkte/bearbeiten/${run.id}/${this.currentDiscipline.name.toLowerCase()}`]);
     }
   }
 

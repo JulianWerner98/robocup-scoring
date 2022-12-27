@@ -10,23 +10,27 @@ import {FormsModule} from "@angular/forms";
 
 
 @NgModule({
-  declarations: [
-    OverviewComponent,
-    GetArrayWithNumbersPipe,
-    GetArrayWithNumbersPipe,
-    GetRunFromRunsPipe,
+    declarations: [
+        OverviewComponent,
+        GetArrayWithNumbersPipe,
+        GetArrayWithNumbersPipe,
+        GetRunFromRunsPipe,
+        SecondsToTimePipe
+    ],
+    imports: [
+        CommonModule,
+        ScoreRoutingModule,
+        MatPaginatorModule,
+        MatTableModule,
+        FormsModule
+    ],
+  exports: [
+    SecondsToTimePipe,
     SecondsToTimePipe
   ],
-  imports: [
-    CommonModule,
-    ScoreRoutingModule,
-    MatPaginatorModule,
-    MatTableModule,
-    FormsModule
-  ],
-  providers: [
-    GetArrayWithNumbersPipe,
-    GetRunFromRunsPipe
-  ]
+    providers: [
+        GetArrayWithNumbersPipe,
+        GetRunFromRunsPipe
+    ]
 })
 export class ScoreModule { }
