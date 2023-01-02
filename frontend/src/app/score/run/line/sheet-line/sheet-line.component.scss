@@ -25,6 +25,10 @@
     border-radius: 5px;
     padding-left: 10px;
 
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
     &:focus {
       outline: none;
       background-color: lightgray;
@@ -49,7 +53,7 @@
 
       &:checked {
         box-shadow: inset 0px 0px 0px 4px #fff ;
-        background-color: black;
+        background-color: #212529;
       }
     }
   }
@@ -86,7 +90,8 @@
 }
 
 .checked {
-  background: darkgrey !important;
+  transition: all 0.1s ease-in-out;
+  background: #212529 !important;
   color: white;
 }
 
@@ -133,6 +138,11 @@ textarea {
   border: 2px solid #212529;
   border-radius: 5px;
   font-size: 1.25rem;
+  padding-left: 5px;
+  &:focus {
+    outline: none;
+    background-color: lightgray;
+  }
 }
 
 .s5 {
@@ -165,6 +175,10 @@ textarea {
 
 .s30 {
   width: 30%;
+}
+
+.s33 {
+  width: 33.33333%;
 }
 
 .s40 {

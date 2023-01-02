@@ -11,13 +11,9 @@ export class CreateLineComponent implements OnInit {
   run: LineRun = new LineRun();
   subtotal: number = 0;
   multiplier: number = 1;
-  constructor(private route: ActivatedRoute,) { }
+  constructor() { }
 
   ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      console.log(params['kind']);
-      console.log(params['id']);
-    });
     this.calculate();
   }
 
@@ -27,4 +23,8 @@ export class CreateLineComponent implements OnInit {
     this.run.points = Math.round(this.subtotal * this.multiplier);
   }
 
+  valueChanged() {
+    console.log('value changed');
+    this.calculate();
+  }
 }

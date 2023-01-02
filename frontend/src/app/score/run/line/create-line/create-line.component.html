@@ -1,5 +1,5 @@
 <div class="mb-3 card card-shadow">
-  <app-sheet-line [run]="run"></app-sheet-line>
+  <app-sheet-line [run]="run" [teamname]="'Hier könnte ihre Werbung stehen'" (valueChanged)="valueChanged()"></app-sheet-line>
 </div>
 <div class="mb-3 p-3 card card-shadow">
   <h4>Zusammenfassung</h4>
@@ -11,7 +11,7 @@
     <div class="m-3"></div>
     <app-overview-row [title]="'Startkachel'"   [value]="'5 Punkte'"></app-overview-row>
     <app-overview-row *ngFor="let section of run.value.sections"
-                      [title]="'Abschnitt ' + section.number + ' ('+section.value+'.Versuch)'"
+                      [title]="'Abschnitt ' + section.number + ' ('+(section.value<4?section.value:'>3')+'.Versuch)'"
                       [count]="section.count + ' x '+ (section.value | GetSectionPoints) +' Punkte'"
                       [value]="(section.value | GetSectionPoints) * section.count + ' Punkte'">
     </app-overview-row>

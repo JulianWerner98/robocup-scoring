@@ -1,35 +1,45 @@
 <div class="paper">
   <div class="paper-row" #pdf>
     <label>Teamname</label>
-    <input type="text" class="s40" value="">
+    <input type="text" class="s40" [(ngModel)]="teamname" style="font-size: 1.25rem" [disabled]="teamname?true:false">
     <label>Runde</label>
-    <input type="number" class="s7" min="1">
+    <input type="number" class="s7" min="1" [(ngModel)]="run.number" [disabled]="run.number?true:false">
     <label>Arena</label>
-    <input type="number" class="s7" min="1">
+    <input type="text" class="s12" min="1" [(ngModel)]="run.arena" [disabled]="run.arena?true:false">
   </div>
 
   <div class="paper-row divider">
     <label>Evakuierungspunkte</label>
-    <button class="s10">Flach</button>
-    <button class="s10">Hoch</button>
+    <button class="s10" [class.checked]="run.value.evacuationLevel===1"
+            (click)="run.value.evacuationLevel = 1; valueChanged();">Flach
+    </button>
+    <button class="s10" [class.checked]="run.value.evacuationLevel===2"
+            (click)="run.value.evacuationLevel = 2; valueChanged();">Hoch
+    </button>
     <label>Rescue Kit Lvl</label>
-    <button class="s5">1</button>
-    <button class="s5">2</button>
+    <button class="s5" [class.checked]="run.value.rescueKitLevel===1"
+            (click)="run.value.rescueKitLevel = 1; valueChanged();">1
+    </button>
+    <button class="s5" [class.checked]="run.value.rescueKitLevel===2"
+            (click)="run.value.rescueKitLevel = 2; valueChanged();">2
+    </button>
 
   </div>
   <div class="paper-row">
     <label>Startzeit</label>
-    <input type="time" class="s20">
-    <label>Runde</label>
-    <input type="time" class="s20" max="8:00">
+    <input type="time" class="s20" value="{{(run.startTime.hours*60+ run.startTime.minutes) | SecondsToTime}}"
+           [disabled]="run.startTime.hours?true:false"> <!--ToDo Speichern-->
+    <label>Zeit</label>
+    <input type="time" class="s20" max="8:00" value="{{run.time | SecondsToTime}}"> <!--ToDo Speichern-->
     <label>Exit?</label>
-    <input type="checkbox">
+    <input type="checkbox" [checked]="run.value.exit" (change)="run.value.exit = !run.value.exit; valueChanged();">
   </div>
 
   <div class="paper-row" style="height: 8%">
     <app-section
-      *ngFor="let number of (sectionCount-1) | GetArrayWithNumbers"
+      *ngFor="let number of (run.value.sections.length-1) | GetArrayWithNumbers"
       [section]="number+1"
+      [value]="run.value.sections[number].value"
       (sectionChange)="sectionChange(number, $event)"
     ></app-section>
   </div>
@@ -37,53 +47,94 @@
   <div class="paper-row">
     <label class="sameSize">Kreuzungen</label>
     <div class="tally s30">
-      <input type="number" class="" min="0">
+      <input type="number" class="" min="0" max="99"
+             [(ngModel)]="run.value.intersections"
+             (change)="valueChanged()">
     </div>
-    <label style="width: 125px">LoPs</label>
+    <label style="width: 125px">Rampen</label>
     <div class="tally s30">
-      <input type="number" class="" min="0">
+      <input type="number" class="" min="0" max="99"
+             [(ngModel)]="run.value.ramps"
+             (change)="valueChanged()">
     </div>
   </div>
 
   <div class="paper-row">
     <label class="sameSize">Wippen</label>
     <div class="tally s30">
-      <input type="number" class="" min="0">
+      <input type="number" class="" min="0" max="99"
+             [(ngModel)]="run.value.seesaws"
+             (change)="valueChanged()">
     </div>
-    <label style="width: 125px">LoPs in EZ</label>
+    <label style="width: 125px">LoPs</label>
     <div class="tally s30">
-      <input type="number" class="" min="0">
+      <input type="number" class="" min="0" max="99"
+             [(ngModel)]="run.value.lop"
+             (change)="valueChanged()">
     </div>
   </div>
 
   <div class="paper-row">
     <label class="sameSize">Hindernisse</label>
     <div class="tally s30">
-      <input type="number" class="" min="0">
+      <input type="number" class="" min="0" max="99"
+             [(ngModel)]="run.value.obstacles"
+             (change)="valueChanged()">
+    </div>
+    <label style="width: 125px">LoPs in EZ</label>
+    <div class="tally s30">
+      <input type="number" class="" min="0" max="99"
+             [(ngModel)]="run.value.lopEva"
+             (change)="valueChanged()">
+    </div>
+  </div>
+
+  <div class="paper-row">
+    <label class="sameSize">Lücken</label>
+    <div class="tally s30">
+      <input type="number" class="" min="0" max="99"
+             [(ngModel)]="run.value.gaps"
+             (change)="valueChanged()">
     </div>
     <label style="width: 125px">Rescue Kit</label>
-    <div class="tally s30">
-      <input type="number" class="" min="0">
+    <div class="s30">
+      <button class="s50" style="border-bottom-right-radius: 0;border-top-right-radius: 0;"
+              (click)="run.value.rescueKit = true; valueChanged()"
+              [class.checked]="run.value.rescueKit">Ja</button>
+      <button class="s50" style="border-bottom-left-radius: 0;border-top-left-radius: 0;"
+              (click)="run.value.rescueKit = false; valueChanged()"
+              [class.checked]="!run.value.rescueKit">Nein</button>
     </div>
   </div>
 
   <div class="paper-row">
     <label class="sameSize">Bumper</label>
     <div class="tally s30">
-      <input type="number" class="" min="0">
+      <input type="number" class="" min="0" max="99"
+             [(ngModel)]="run.value.bumper"
+             (change)="valueChanged()">
     </div>
-    <label style="width: 125px">Totes Opfer</label>
-    <div class="tally s30">
-      <input type="number" class="" min="0">
+    <label style="width: 125px">Victims</label>
+    <div class="s30">
+      <button class="s33" style="border-bottom-right-radius: 0;border-top-right-radius: 0;"
+              (click)="victimsChanged(1);"
+              [class.checked]="run.value.livingVictims===1 || run.value.livingVictims===2">LV</button>
+      <button class="s33" style="border-radius: 0" #livingVictims2
+              (click)="victimsChanged(2);"
+              [class.checked]="run.value.livingVictims===2">LV</button>
+      <button class="s33" style="border-bottom-left-radius: 0;border-top-left-radius: 0;"
+              (click)="run.value.deadVictims = run.value.deadVictims?0:1; valueChanged()"
+              [class.checked]="run.value.deadVictims">DV</button>
     </div>
   </div>
+
   <div class="paper-row" style="height: 50%">
     <div class="map">Map</div>
     <div class="side">
       <label>Schiri</label>
-      <input type="text" class="s90">
+      <input type="text" class="s90" [(ngModel)]="run.referee">
       <label>Anmerkung</label>
-      <textarea type="text" class="s90"></textarea>
+      <textarea type="text" class="s90" [(ngModel)]="run.remarks"></textarea>
       <label>Team Unterschrift</label>
       <input type="text" class="s90" style="height: 100px">
     </div>

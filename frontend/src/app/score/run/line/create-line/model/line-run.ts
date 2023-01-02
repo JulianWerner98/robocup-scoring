@@ -100,7 +100,7 @@ export class LineRun extends Run {
     multiplier *= Math.max(rescueMultiplier * (this.value.rescueKit ? 1 : 0), 1);
     multiplier *= Math.pow(evaMultiplier, this.value.livingVictims);
     if (this.value.livingVictims === 2) {
-      multiplier *= evaMultiplier * this.value.deadVictims;
+      multiplier *= Math.max(evaMultiplier * this.value.deadVictims,1);
     }
     return multiplier;
   }
