@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
-import {CreateLineComponent} from "./create-line/create-line.component";
+import {CreateLineComponent} from "./line/create-line/create-line.component";
 import {RunComponent} from "./run.component";
 
 const routes: Routes = [

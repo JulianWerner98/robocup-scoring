@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
+import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-run',
@@ -8,13 +9,10 @@ import {ActivatedRoute} from "@angular/router";
 })
 export class RunComponent implements OnInit {
 
-  constructor(private route: ActivatedRoute) { }
+  constructor(
+  ) { }
 
-  ngOnInit(): void {
-    this.route.params.subscribe((params) => {
-      console.log(params['kind']);
-      console.log(params['id']);
-    });
+  async ngOnInit() {
   }
 
 }

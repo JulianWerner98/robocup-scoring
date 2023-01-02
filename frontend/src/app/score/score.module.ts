@@ -24,10 +24,11 @@ import {FormsModule} from "@angular/forms";
         MatTableModule,
         FormsModule
     ],
-  exports: [
-    SecondsToTimePipe,
-    SecondsToTimePipe
-  ],
+    exports: [
+        SecondsToTimePipe,
+        SecondsToTimePipe,
+        GetArrayWithNumbersPipe
+    ],
     providers: [
         GetArrayWithNumbersPipe,
         GetRunFromRunsPipe

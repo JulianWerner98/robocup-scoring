@@ -1,0 +1,196 @@
+.paper {
+  aspect-ratio: 210/297;
+  background-color: #fff;
+  max-width: 50rem;
+  margin: 0 auto;
+  padding: 2rem;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+.paper-row {
+  height: 6%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  font-size: 1.5rem;
+  padding: 5px;
+
+  input {
+    height: 40px;
+    border: 2px solid #212529;
+    border-radius: 5px;
+    padding-left: 10px;
+
+    &:focus {
+      outline: none;
+      background-color: lightgray;
+    }
+
+    &[type="checkbox"] {
+      aspect-ratio: 1/1;
+      appearance: none;
+      -webkit-appearance: none;
+      -moz-appearance: none;
+      -ms-appearance: none;
+      -o-appearance: none;
+      display: inline-block;
+      vertical-align: middle;
+      background-color: #fff;
+      border: 2px solid #212529;
+      transition: all 0.2s ease-in-out;
+
+      &:focus {
+        background-color: lightgray;
+      }
+
+      &:checked {
+        box-shadow: inset 0px 0px 0px 4px #fff ;
+        background-color: black;
+      }
+    }
+  }
+
+  label {
+    margin: 0;
+    padding: 5px 0 5px 0;
+  }
+
+  button {
+    height: 40px;
+    border: 2px solid #212529;
+    border-radius: 5px;
+    background: white;
+    padding: 0px;
+
+    &:hover {
+      background: lightgray;
+    }
+
+    &:focus {
+      outline: none;
+      background: lightgray;
+    }
+
+    &:active {
+      font-weight: bold;
+    }
+  }
+}
+
+.sameSize {
+  width: 140px;
+}
+
+.checked {
+  background: darkgrey !important;
+  color: white;
+}
+
+.map {
+  width: 70%;
+  height: 100%;
+  background-color: lightgray;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  font-size: 15rem;
+  margin-right: 1%;
+}
+
+.side {
+  width: 30%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
+.tally {
+  height: 40px;
+  margin: 0;
+  border: 2px solid #212529;
+  border-radius: 5px;
+  input {
+    float: right;
+    width: 30%;
+    height: calc(100% + 4px);
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    margin: -2px;
+  }
+}
+
+textarea {
+  height: 225px;
+  resize: none;
+  border: 2px solid #212529;
+  border-radius: 5px;
+  font-size: 1.25rem;
+}
+
+.s5 {
+  width: 5%;
+}
+
+.s7 {
+  width: 7%;
+}
+
+.s10 {
+  width: 10%;
+}
+
+.s12 {
+  width: 12%;
+}
+
+.s15 {
+  width: 15%;
+}
+
+.s20 {
+  width: 20%;
+}
+
+.s25 {
+  width: 25%;
+}
+
+.s30 {
+  width: 30%;
+}
+
+.s40 {
+  width: 40%;
+}
+
+.s50 {
+  width: 50%;
+}
+
+.s60 {
+  width: 60%;
+}
+
+.s70 {
+  width: 70%;
+}
+
+.s80 {
+  width: 80%;
+}
+
+.s90 {
+  width: 90%;
+}
+
+.divider {
+  border-bottom: 2px solid black;
+}

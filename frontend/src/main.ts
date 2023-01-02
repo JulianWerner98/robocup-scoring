@@ -5,12 +5,13 @@ import {AppModule} from './app/app.module';
 import {environment} from './environments/environment';
 
 
-if (!isDevMode()) {
-  window.console.log = () => {};
-}
 
 if (environment.production) {
   enableProdMode();
+}
+
+if (!isDevMode()) {
+  window.console.log = () => {};
 }
 
 platformBrowserDynamic()

@@ -1,0 +1,91 @@
+<div class="paper">
+  <div class="paper-row" #pdf>
+    <label>Teamname</label>
+    <input type="text" class="s40" value="">
+    <label>Runde</label>
+    <input type="number" class="s7" min="1">
+    <label>Arena</label>
+    <input type="number" class="s7" min="1">
+  </div>
+
+  <div class="paper-row divider">
+    <label>Evakuierungspunkte</label>
+    <button class="s10">Flach</button>
+    <button class="s10">Hoch</button>
+    <label>Rescue Kit Lvl</label>
+    <button class="s5">1</button>
+    <button class="s5">2</button>
+
+  </div>
+  <div class="paper-row">
+    <label>Startzeit</label>
+    <input type="time" class="s20">
+    <label>Runde</label>
+    <input type="time" class="s20" max="8:00">
+    <label>Exit?</label>
+    <input type="checkbox">
+  </div>
+
+  <div class="paper-row" style="height: 8%">
+    <app-section
+      *ngFor="let number of (sectionCount-1) | GetArrayWithNumbers"
+      [section]="number+1"
+      (sectionChange)="sectionChange(number, $event)"
+    ></app-section>
+  </div>
+
+  <div class="paper-row">
+    <label class="sameSize">Kreuzungen</label>
+    <div class="tally s30">
+      <input type="number" class="" min="0">
+    </div>
+    <label style="width: 125px">LoPs</label>
+    <div class="tally s30">
+      <input type="number" class="" min="0">
+    </div>
+  </div>
+
+  <div class="paper-row">
+    <label class="sameSize">Wippen</label>
+    <div class="tally s30">
+      <input type="number" class="" min="0">
+    </div>
+    <label style="width: 125px">LoPs in EZ</label>
+    <div class="tally s30">
+      <input type="number" class="" min="0">
+    </div>
+  </div>
+
+  <div class="paper-row">
+    <label class="sameSize">Hindernisse</label>
+    <div class="tally s30">
+      <input type="number" class="" min="0">
+    </div>
+    <label style="width: 125px">Rescue Kit</label>
+    <div class="tally s30">
+      <input type="number" class="" min="0">
+    </div>
+  </div>
+
+  <div class="paper-row">
+    <label class="sameSize">Bumper</label>
+    <div class="tally s30">
+      <input type="number" class="" min="0">
+    </div>
+    <label style="width: 125px">Totes Opfer</label>
+    <div class="tally s30">
+      <input type="number" class="" min="0">
+    </div>
+  </div>
+  <div class="paper-row" style="height: 50%">
+    <div class="map">Map</div>
+    <div class="side">
+      <label>Schiri</label>
+      <input type="text" class="s90">
+      <label>Anmerkung</label>
+      <textarea type="text" class="s90"></textarea>
+      <label>Team Unterschrift</label>
+      <input type="text" class="s90" style="height: 100px">
+    </div>
+  </div>
+</div>

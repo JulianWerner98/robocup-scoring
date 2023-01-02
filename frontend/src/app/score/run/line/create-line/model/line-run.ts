@@ -1,4 +1,4 @@
-import {Run} from "../../model/run";
+import {Run} from "../../../model/run";
 
 export class LineRun extends Run {
   value: {
@@ -49,6 +49,7 @@ export class LineRun extends Run {
       livingVictims: 2,
       deadVictims: 1,
     }
+    return this;
   }
 
   calculateSubtotal() {

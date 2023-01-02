@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import {LineRun} from "./model/line-run";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-create-line',
@@ -10,9 +11,13 @@ export class CreateLineComponent implements OnInit {
   run: LineRun = new LineRun();
   subtotal: number = 0;
   multiplier: number = 1;
-  constructor() { }
+  constructor(private route: ActivatedRoute,) { }
 
   ngOnInit(): void {
+    this.route.params.subscribe((params) => {
+      console.log(params['kind']);
+      console.log(params['id']);
+    });
     this.calculate();
   }
 
