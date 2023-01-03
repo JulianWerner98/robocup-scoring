@@ -67,7 +67,7 @@ export class AppComponent implements OnInit {
             teams.map((team: Team) => {
               return {
                 originalId: team.id,
-                teamname: team.name,
+                teamname: (team as any).name,
                 discipline: disciplines.find((d: Discipline) => d.name === team.discipline)!.id,
                 location,
               } as Score;

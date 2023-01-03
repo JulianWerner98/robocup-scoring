@@ -13,9 +13,9 @@ import {
   GetSectionPointsPipe,
   GetDeductionPipe
 } from "./pipes";
-import { SheetLineComponent } from './line/sheet-line/sheet-line.component';
+import { SheetLineComponent } from './line/create-line/sheet-line/sheet-line.component';
 import {FormsModule} from "@angular/forms";
-import {SectionComponent} from "./line/sheet-line/section/section.component";
+import {SectionComponent} from "./line/create-line/sheet-line/section/section.component";
 
 
 @NgModule({

@@ -1,4 +1,4 @@
-import {Body, Controller, Param, Post} from '@nestjs/common';
+import {Body, Controller, Get, Param, Patch, Post} from '@nestjs/common';
 import {RunService} from "./run.service";
 import {NotFound} from "../util/not-found.decorator";
 import {Run} from "./run.schema";
@@ -18,11 +18,22 @@ export class RunController {
     @NotFound()
     async createRun(@Param() params: FindRunDto,
                     @Body() createRunDto: CreateRunDto): Promise<Run> {
-        let run = await this.runService.create(createRunDto.runNumber);
-        console.log(run);
-        let query = await this.scoreService.addRun(params.id, (run as any)._id);
-        console.log(query);
+        let run = await this.runService.create(createRunDto.run);
+        await this.scoreService.addRun(params.id, (run as any)._id);
         return run;
     }
 
+    @Get(':id')
+    @NotFound()
+    getRun(@Param() params: FindRunDto): Promise<Run> {
+        console.log(params);
+        return this.runService.getOne(params.id);
+    }
+
+    @Patch(':id')
+    @NotFound()
+    updateRun(@Param() params: FindRunDto,
+                @Body() createRunDto: CreateRunDto): Promise<Run> {
+        return this.runService.update(params.id, createRunDto.run);
+    }
 }

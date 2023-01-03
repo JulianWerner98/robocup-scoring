@@ -22,7 +22,7 @@ export interface FullScore extends Omit<Score, 'runs'> {
 
 export interface Team {
   readonly id: string;
-  readonly name: string;
+  readonly teamname: string;
   readonly league: string;
   readonly discipline: string;
   readonly location: string;

@@ -21,6 +21,10 @@ export class ScoreService {
     return this.httpClient.get<Team[]>(`${environment.baseUrlV1Anmeldung}/team`);
   }
 
+  getTeam(teamId: string): Observable<Team> {
+    return this.httpClient.get<Team>(`${environment.baseUrlV1}/score/${teamId}`);
+  }
+
   getLocations():Observable<any> {
     return this.httpClient.get<any>(`${environment.baseUrlV1Anmeldung}/location`);
   }

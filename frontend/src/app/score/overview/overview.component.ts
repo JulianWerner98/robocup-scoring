@@ -81,9 +81,10 @@ export class OverviewComponent implements OnInit, AfterViewInit {
   goToRun(score: FullScore, runNumber: number) {
     let run = this.getRunFromRunsPipe.transform(runNumber, score.runs);
     if(!run) {
-      this.router.navigate([`/punkte/erstellen/${score.id}/${this.currentDiscipline.name.toLowerCase()}/${runNumber}`]);
+      this.router.navigate([`/punkte/lauf/${score.id}/${this.currentDiscipline.name.toLowerCase()}/${runNumber}`]);
     } else {
-      this.router.navigate([`/punkte/bearbeiten/${run.id}/${this.currentDiscipline.name.toLowerCase()}`]);
+      console.log(run);
+      this.router.navigate([`/punkte/lauf/${score.id}/${this.currentDiscipline.name.toLowerCase()}/${run._id}`]);
     }
   }
 

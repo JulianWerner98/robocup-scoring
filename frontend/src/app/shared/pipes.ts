@@ -17,7 +17,10 @@ export class GetRunFromRunsPipe implements PipeTransform {
 
 @Pipe({name: 'SecondsToTime'})
 export class SecondsToTimePipe implements PipeTransform {
-  transform(number: number): any | undefined {
+  transform(number: number): string {
+    if (number) {
     return (number > 600 ? "" : "0") + Math.floor(number / 60) + ":"+ (number % 60 > 9 ? "" : "0") + number % 60;
+    }
+    return "00:00";
   }
 }

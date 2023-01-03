@@ -1,8 +1,10 @@
-import {Body, Controller, Get, Post} from '@nestjs/common';
+import {Body, Controller, Get, Param, Post} from '@nestjs/common';
 import {ScoreService} from "./score.service";
 import {AuthenticatedUser} from "nest-keycloak-connect";
 import {Score} from "./score.schema";
 import {InitTeamDto} from "./dto/initTeam.dto";
+import {FindTeamDto} from "./dto/find-team.dto";
+import {NotFound} from "../util/not-found.decorator";
 const fs = require('fs');
 
 const puppeteer = require('puppeteer');
@@ -13,9 +15,9 @@ const puppeteer = require('puppeteer');
 })
 export class ScoreController {
     constructor(private readonly scoreService: ScoreService) {
-        this.testFunction().then(() => {
+        /*this.testFunction().then(() => {
             console.log('testFunction finished');
-        });
+        });*/
     }
 
     async testFunction() {
@@ -66,5 +68,13 @@ export class ScoreController {
     @Get()
     getScore(@AuthenticatedUser() user): Promise<any[]> {
         return this.scoreService.getScore(user);
+    }
+
+    @Get(':id')
+    @NotFound()
+    getTeam(@AuthenticatedUser() user, @Param() findTeam: FindTeamDto): Promise<Score> {
+        console.log('findTeam');
+        console.log(findTeam);
+        return this.scoreService.getTeam(findTeam.id);
     }
 }

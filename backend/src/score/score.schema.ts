@@ -5,6 +5,7 @@ interface Run {
     readonly number: number;
     readonly points: number;
     readonly time: number;
+    readonly startTime: number;
     readonly firstReview: string;
     readonly secondReview: string;
 }

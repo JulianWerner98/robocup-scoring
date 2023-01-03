@@ -1,6 +1,4 @@
-import { Component, OnInit } from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
-import {HttpClient} from "@angular/common/http";
+import {Component, OnInit} from '@angular/core';
 
 @Component({
   selector: 'app-run',
@@ -8,9 +6,8 @@ import {HttpClient} from "@angular/common/http";
   styleUrls: ['./run.component.scss']
 })
 export class RunComponent implements OnInit {
-
-  constructor(
-  ) { }
+  constructor() {
+  }
 
   async ngOnInit() {
   }

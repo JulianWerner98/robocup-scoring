@@ -53,4 +53,8 @@ export class ScoreService {
             }
         }, {new: true});
     }
+
+    getTeam(id: string) {
+        return this.scoreModel.findOne({_id: id}).exec();
+    }
 }

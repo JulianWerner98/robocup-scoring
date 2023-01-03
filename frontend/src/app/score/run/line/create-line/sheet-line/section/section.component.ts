@@ -6,8 +6,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
   styleUrls: ['./section.component.scss']
 })
 export class SectionComponent implements OnInit {
-  @Input() section: number = 0;
-  @Input() value: number = 0;
+  @Input() section: {number: number, value: number, count: number} = {number: 1, value: 0, count: 0};
   @Output() sectionChange = new EventEmitter<number>();
   buttons: Boolean[] = [false, false, false, false]
 
@@ -15,9 +14,7 @@ export class SectionComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    if(this.value > 0) {
-      this.buttons[this.value-1] = true;
-    }
+    this.buttons[this.section.value-1] = true;
   }
 
 

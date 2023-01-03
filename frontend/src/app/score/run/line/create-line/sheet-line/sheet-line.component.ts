@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, ElementRef, EventEmitter, Input, OnInit, Output, ViewChild} from '@angular/core';
-import {LineRun} from "../create-line/model/line-run";
+import {LineRun} from "../model/line-run";
 import {ActivatedRoute} from "@angular/router";
 import {timeout} from "rxjs";
 
@@ -20,10 +20,8 @@ export class SheetLineComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  sectionChange(witchSection: number, sectionCount: number) {
-
-    console.log(witchSection, sectionCount);
-    this.run.value.sections[witchSection].value = sectionCount+1;
+  sectionChange(section: { number: number, value: number, count: number }, sectionCount: number) {
+    this.run.value.sections[section.number].value = sectionCount+1;
     this.valueChangedEvent.emit();
   }
 
@@ -46,5 +44,13 @@ export class SheetLineComponent implements OnInit {
       }
     }
     this.valueChangedEvent.emit();
+  }
+
+  timeChanged(time: HTMLInputElement) {
+    this.run.time = +time.value.substring(0,2)*60 + +time.value.substring(3,6);
+  }
+
+  startTimeChanged(time: HTMLInputElement) {
+    this.run.startTime = +time.value.substring(0,2)*60 + +time.value.substring(3,6);
   }
 }

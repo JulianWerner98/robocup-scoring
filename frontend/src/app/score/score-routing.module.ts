@@ -8,7 +8,7 @@ const routes: Routes = [
     component: OverviewComponent,
   },
   {
-    path: ':kind/:id',
+    path: 'lauf',
     loadChildren: () => import('./run/run.module').then(m => m.RunModule),
   },
 ];

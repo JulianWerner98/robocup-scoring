@@ -30,24 +30,25 @@ export class LineRun extends Run {
   constructor() {
     super();
     this.value = {
-      lop: 5,
-      lopEva: 3,
+      lop: 0,
+      lopEva: 0,
       sections: [
-        {number: 1, value: 1, count: 4},
-        {number: 2, value: 2, count: 9},
-        {number: 3, value: 4, count: 10}],
-      intersections: 5,
-      seesaws: 1,
-      obstacles: 1,
-      ramps: 2,
-      gaps: 4,
-      bumper: 5,
-      exit: true,
-      rescueKitLevel: 2,
-      rescueKit: true,
-      evacuationLevel: 2,
-      livingVictims: 2,
-      deadVictims: 1,
+        {number: 1, value: 4, count: 5},
+        {number: 2, value: 4, count: 5},
+        {number: 3, value: 4, count: 5},
+        {number: 4, value: 4, count: 5}],
+      intersections: 0,
+      seesaws: 0,
+      obstacles: 0,
+      ramps: 0,
+      gaps: 0,
+      bumper: 0,
+      exit: false,
+      rescueKitLevel: 0,
+      rescueKit: false,
+      evacuationLevel: 0,
+      livingVictims: 0,
+      deadVictims: 0,
     }
     return this;
   }

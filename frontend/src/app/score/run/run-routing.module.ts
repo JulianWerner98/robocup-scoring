@@ -5,18 +5,18 @@ import {RunComponent} from "./run.component";
 
 const routes: Routes = [
   {
-    path: 'line',
+    path: '',
     component: RunComponent,
     children: [
       {
-        path: '',
-        component: CreateLineComponent,
-      },
-      {
-        path: ':runNumber',
+        path: ':id/line/:runId',
         component: CreateLineComponent,
       }
     ]
+  },
+  {
+    path: '',
+    component: RunComponent,
   }
 ];
 

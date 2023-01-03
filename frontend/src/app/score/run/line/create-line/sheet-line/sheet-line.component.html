@@ -27,20 +27,18 @@
   </div>
   <div class="paper-row">
     <label>Startzeit</label>
-    <input type="time" class="s20" value="{{(run.startTime.hours*60+ run.startTime.minutes) | SecondsToTime}}"
-           [disabled]="run.startTime.hours?true:false"> <!--ToDo Speichern-->
+    <input type="time" class="s20" value="{{run.startTime | SecondsToTime}}" (change)="startTimeChanged(startTime)" #startTime>
     <label>Zeit</label>
-    <input type="time" class="s20" max="8:00" value="{{run.time | SecondsToTime}}"> <!--ToDo Speichern-->
+    <input type="time" class="s20" max="8:00" value="{{run.time | SecondsToTime}}" (change)="timeChanged(time)" #time>
     <label>Exit?</label>
     <input type="checkbox" [checked]="run.value.exit" (change)="run.value.exit = !run.value.exit; valueChanged();">
   </div>
 
   <div class="paper-row" style="height: 8%">
     <app-section
-      *ngFor="let number of (run.value.sections.length-1) | GetArrayWithNumbers"
-      [section]="number+1"
-      [value]="run.value.sections[number].value"
-      (sectionChange)="sectionChange(number, $event)"
+      *ngFor="let section of run.value.sections"
+      [section]="section"
+      (sectionChange)="sectionChange(section, $event)"
     ></app-section>
   </div>
 

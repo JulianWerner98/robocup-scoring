@@ -1,5 +1,5 @@
 <div class="mb-3 card card-shadow">
-  <app-sheet-line [run]="run" [teamname]="'Hier könnte ihre Werbung stehen'" (valueChanged)="valueChanged()"></app-sheet-line>
+  <app-sheet-line [run]="run" [teamname]="teamname" (valueChanged)="valueChanged()"></app-sheet-line>
 </div>
 <div class="mb-3 p-3 card card-shadow">
   <h4>Zusammenfassung</h4>
@@ -39,7 +39,7 @@
     <app-overview-row [title]="'Rescue Kit abgeladen'" [count]="run.value.rescueKit? 'Ja': 'Nein'"
                       [value]="'x '+ ((run.value.rescueKit | GetRescueKitBonus: run.value.rescueKitLevel: run.value.evacuationLevel) | number: '1.2-2')"></app-overview-row>
     <app-overview-row [title]="'Lebende Opfer'" [count]="run.value.livingVictims.toString()"
-                      [value]="'x '+ ((run.value.livingVictims | GetVictimsMultiplier) | number: '1.2-2')"></app-overview-row>
+                      [value]="'x '+ ((run.value.livingVictims?(run.value.evacuationLevel | GetVictimsMultiplier):1) | number: '1.2-2')"></app-overview-row>
     <app-overview-row [title]="'Tote Opfer'" [count]="run.value.deadVictims.toString()"
                       [value]="'x '+ ((run.value.livingVictims === 2? (run.value.evacuationLevel | GetVictimsMultiplier):1) | number: '1.2-2')"></app-overview-row>
     <app-overview-row [title]="'Abzug pro Victim / Kit'" [count]="run.value.lopEva + ' x &mdash;' + (run.value.evacuationLevel === 1? 0.025: 0.05)"
@@ -48,7 +48,8 @@
     <app-overview-row [title]="'Multiplikator'" [value]="'x ' + (multiplier | number: '1.2-2')"></app-overview-row>
     <div class="m-4"></div>
     <app-overview-row [title]="'Summe'" [value]="run.points + ' Punkte'" class="fw-bold"></app-overview-row>
+    <div style="height: 20px"></div>
 
-
+    <button class="btn base-bg text-white" (click)="saveRun()">{{run.id?'Update':'Speichern'}}</button>
   </div>
 </div>

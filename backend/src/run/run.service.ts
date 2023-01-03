@@ -8,11 +8,15 @@ export class RunService {
     constructor(@InjectModel(Run.name) private runModel: Model<RunDocument> ) {}
 
 
-    create(runNumber: number): Promise<Run> {
-        return this.runModel.create({
-            number: runNumber,
-            points: Math.floor(Math.random() * 1000),
-            time: Math.floor(Math.random() * 480)
-        });
+    create(run: Run): Promise<Run> {
+        return this.runModel.create(run);
+    }
+
+    getOne(id: string) {
+        return this.runModel.findOne({_id: id}).exec();
+    }
+
+    update(id: string, run: Run) {
+        return this.runModel.findOneAndUpdate({_id: id}, run, {new: true}).exec();
     }
 }
